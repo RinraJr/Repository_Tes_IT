@@ -102,7 +102,8 @@ class KaryawanController extends Controller
     public function printPdf()
     {
         $karyawan = Karyawan::all();
-        $pdf = PDF::loadView('karyawan.pdf', compact('karyawan'));
+        $pdf = app('dompdf.wrapper'); // Get the PDF instance
+        $pdf->loadView('karyawan.pdf', compact('karyawan'));
 
         return $pdf->download('laporan_karyawan.pdf');
     }
